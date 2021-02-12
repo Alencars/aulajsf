@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>UNIPAR</title>
+</h:head>
+<h:body>
+	<h1>UNIPAR</h1>
+	
+	<h:form>
+		<!-- COMENTÁRIO -->
+		<p:messages />
+	
+		<p:outputLabel for="txt" value="Campo Texto:" />
+		<p:inputText id="txt" required="true" 
+			requiredMessage="Campo texto obrigatório"
+			value="#{testeCtrl.campo1}" />
+		
+		<br/>
+		<p:outputLabel value="#{testeCtrl.campo1}" />
+		<br/>
+		
+		<p:outputLabel for="popup" value="Calendário:" />
+	    <p:calendar id="popup" showOn="button" pattern="dd/MM/yyyy"
+	    	required="true" requiredMessage="Calendário obrigatório"/>
+	    
+	    <br/>
+	    
+	    <p:outputLabel for="combo" value="Combobox:" />
+	    <p:selectOneMenu id="combo" filter="true" 
+	    		filterMatchMode="contains">
+	    	<f:selectItem itemLabel="" itemValue="" />
+	    	<f:selectItem itemLabel="Item 1" itemValue="1" />
+	    	<f:selectItem itemLabel="Item 2" itemValue="2" />
+	    	<f:selectItem itemLabel="Item 3" itemValue="3" />
+	    	<f:selectItem itemLabel="Item 4" itemValue="4" />
+	    </p:selectOneMenu>
+	    
+	    <br/>
+	    
+	    <p:outputLabel for="campoNumerico" value="Campo numérico:" />
+	    <p:inputNumber id="campoNumerico" decimalPlaces="4"
+	    	decimalSeparator="," thousandSeparator="." />
+	    	
+	    <br/>
+	    	
+	    <p:outputLabel for="pass" value="Senha:" />
+	    <p:password id="pass" feedback="true"
+	    	promptLabel="Digite a senha" weakLabel="Fraca"
+	        goodLabel="Bom" strongLabel="Forte" />
+	    
+	    <br/><br/>
+	    
+	    <p:commandButton value="Botão">
+	    	<p:confirm header="Confirmação" 
+	    		message="Deseja realizar alguma ação?" />
+	    </p:commandButton>
+	    
+	    <p:commandButton value="Mudar de página" 
+	    	action="pagina2"
+	    	update="@form" />
+	    	
+	    <p:commandButton value="Executar Controlador"
+	    	update="@form" action="#{testeCtrl.teste}"
+	    	actionListener="#{testeCtrl.teste}" />
+	    	
+	    <p:commandButton value="Login" action="login" process="@this" />
+	    
+	    <p:confirmDialog global="true">
+	    	<p:commandButton value="Sim" styleClass="ui-confirmdialog-yes" />
+	    	<p:commandButton value="Não" styleClass="ui-confirmdialog-no" />
+	    </p:confirmDialog>
+	    <br/>
+	    <p:dataTable var="car" value="#{testeCtrl.lista}"
+	    	rows="3"
+	    	paginator="true" rowsPerPageTemplate="3,5,10">
+	    	
+	    	<p:column headerText="Marca" filterBy="#{car.marca}"
+	    		sortBy="#{car.marca}">
+	    		#{car.marca}
+	    	</p:column>
+	    	
+	    	<p:column headerText="Modelo" filterBy="#{car.modelo}"
+	    		sortBy="#{car.modelo}">
+	    		#{car.modelo}
+	    	</p:column>
+	    	
+	    	<p:column headerText="Ano" filterBy="#{car.ano}"
+	    		sortBy="#{car.ano}">
+	    		#{car.ano}
+	    	</p:column>
+	    	
+	    	<p:column headerText="Cor" filterBy="#{car.cor}"
+	    		sortBy="#{car.cor}">
+	    		#{car.cor}
+	    	</p:column>
+	    </p:dataTable>
+	    
+	    <br/><br/><br/><br/>
+	    <hr/>
+	    <br/>
+    </h:form>
+    
+    <h:form>
+    	<p:inputText value="#{testeCtrl.numero}" />
+    	
+	    <p:commandButton value="Somar" update="@form"
+	    	actionListener="#{testeCtrl.somar}" />
+	    	
+	    <p:commandButton value="Diminuir" update="@form"
+	    	actionListener="#{testeCtrl.diminuir}" /> 
+	    	
+	    <p:commandButton value="Imprimir" update="@form"
+	    	actionListener="#{testeCtrl.imprimir}" /> 	
+	    	
+	    <br/>
+	    Numero Digitado: <p:outputLabel value="#{testeCtrl.numero}" />   	
+    </h:form>        
+    
+    <br/><br/><br/><br/><br/>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</h:body>
+</html>
